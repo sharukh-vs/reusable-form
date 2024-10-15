@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Modal from './Modale'; // Import the modal component
 import './ReusableForm.css'; // Assuming you already have your styles in this file
+// import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const ReusableForm = ({ formType }) => {
   const [formData, setFormData] = useState({
@@ -36,39 +37,67 @@ const ReusableForm = ({ formType }) => {
       {showModal && (
         <Modal message={modalMessage} onClose={() => setShowModal(false)} />
       )}
+      
       <form onSubmit={handleSubmit} className="form-container">
-        <div>
-          <label>Username:</label>
+        <div class = 'title'>
+        {isSignUp ? 'Getting Started..!' : 'Let\'s Sign In..!'}
+        </div>
+        
+        {!isSignUp && (
+          <>
+            <div>
           <input
             type="text"
             name="username"
             value={formData.username}
             onChange={handleChange}
             className="input-field"
+            placeholder='Username or Email'
             required
           />
         </div>
+          </>
+        )
+        }
+        {isSignUp && (
+          <>
+            <div className='input-group'>
+            {/* <i className="fas fa-user input-icon"></i> */}
+              <input
+                type="text"
+                name="username"
+                value={formData.username}
+                onChange={handleChange}
+                className="input-field"
+                placeholder='Username'
+                required
+              />
+            </div>
 
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="input-field"
-            required
-          />
-        </div>
+            <div>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="input-field"
+                placeholder='EMail'
+                required
+              />
+            </div>
 
-        <div>
-          <label>Password:</label>
+          </>
+        )
+        }  
+        
+        <div>  
           <input
             type="password"
             name="password"
             value={formData.password}
             onChange={handleChange}
             className="input-field"
+            placeholder="Password"
             required
           />
         </div>
@@ -76,46 +105,15 @@ const ReusableForm = ({ formType }) => {
         {isSignUp && (
           <>
             <div>
-              <label>Confirm Password:</label>
+              
               <input
                 type="password"
                 name="confirmPassword"
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 className="input-field"
+                placeholder="Confirm Password"
                 required
-              />
-            </div>
-
-            <div>
-              <label>First Name:</label>
-              <input
-                type="text"
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleChange}
-                className="input-field"
-              />
-            </div>
-
-            <div>
-              <label>Last Name:</label>
-              <input
-                type="text"
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleChange}
-                className="input-field"
-              />
-            </div>
-
-            <div>
-              <label>Bio:</label>
-              <textarea
-                name="bio"
-                value={formData.bio}
-                onChange={handleChange}
-                className="input-field"
               />
             </div>
           </>

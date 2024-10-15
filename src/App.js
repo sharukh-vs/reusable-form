@@ -4,7 +4,7 @@ import ReusableForm from './ReusableForm';
 function App() {
   return (
     <div>
-      <h1>Form</h1>
+      <div class = "header-container"><h1 class = "header">Service Connect</h1></div>
       <ReusableForm formType="signup" /> {/* or "signin" */}
     </div>
   );
